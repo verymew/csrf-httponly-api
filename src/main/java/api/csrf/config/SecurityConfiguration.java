@@ -19,7 +19,8 @@ public class SecurityConfiguration {
         http
                 .csrf(csrf -> csrf.csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse()))
                 .authorizeExchange((authorize) -> authorize
-                        .pathMatchers("/ju", "/csrf").permitAll()
+                        .pathMatchers("/csrf", "/post").permitAll()
+                        .pathMatchers("/ju").authenticated()
                         .anyExchange().authenticated()
                 )
                 .formLogin(withDefaults());
